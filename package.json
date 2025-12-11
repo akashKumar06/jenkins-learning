@@ -1,0 +1,21 @@
+{
+  "name": "jenkins-learning",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/akashKumar06/jenkins-learning#readme",
+  "bugs": {
+    "url": "https://github.com/akashKumar06/jenkins-learning/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashKumar06/jenkins-learning.git"
+  },
+  "license": "ISC",
+  "author": "Akash Kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p dist && echo 'App Content' > dist/app.bundle.js"
+  }
+}

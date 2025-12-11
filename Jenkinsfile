@@ -1,32 +1,64 @@
+// pipeline{
+//     agent any
+//     stages{
+//         stage('Build'){
+//             steps{
+//                 echo "Building from git"
+//                 sh 'ls -la'
+//             }
+//         }
+//         stage('Test'){
+//             steps{
+//                 echo "Running tests"
+//             }
+//         }
+//         stage('Deploy'){
+//             steps{
+//                 echo "Deploying...."
+//             }
+//         }
+//     }
+//     post{
+//         always{
+//             echo "One run completed"
+//         }
+//         success{
+//             echo "Great success! the build passed"
+//         }
+//         failure{
+//             echo "Oh no, something broke"
+//         }
+//     }
+// }
+
+// ------- Updated jenkins with faking build --------------------
 pipeline{
     agent any
+    tools {
+        nodejs 'node18'
+    }
     stages{
-        stage('Build'){
+        stage("Install Dependencies"){
             steps{
-                echo "Building from git"
-                sh 'ls -la'
+                sh 'npm install'
             }
         }
-        stage('Test'){
+        stage("Build"){
             steps{
-                echo "Running tests"
+                sh 'npm run build'
             }
         }
-        stage('Deploy'){
+        stage("Test"){
             steps{
-                echo "Deploying...."
+                echo "running tests"
+                sh 'npm test'
             }
         }
     }
     post{
-        always{
-            echo "One run completed"
-        }
         success{
-            echo "Great success! the build passed"
-        }
-        failure{
-            echo "Oh no, something broke"
+            echo "Archiving artifacts"
+            archiveArtifacts artifacts: 'dist/**/*', fingerprint: true
         }
     }
 }
