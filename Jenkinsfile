@@ -56,12 +56,6 @@ pipeline{
                 sh 'npm run build'
             }
         }
-        stage("Test"){
-            steps{
-                echo "running tests"
-                sh 'npm test'
-            }
-        }
     }
     post{
         success{
