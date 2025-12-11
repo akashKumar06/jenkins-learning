@@ -34,10 +34,18 @@
 // ------- Updated jenkins with faking build --------------------
 pipeline{
     agent any
+
     tools {
-        nodejs 'node18'
+        nodejs 'node'
     }
+
     stages{
+        stage("Check Node"){
+            steps{
+                sh "node --version"
+                sh "npm --version"
+            }
+        }
         stage("Install Dependencies"){
             steps{
                 sh 'npm install'
