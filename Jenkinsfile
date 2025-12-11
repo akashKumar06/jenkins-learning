@@ -39,6 +39,10 @@ pipeline{
         nodejs 'node'
     }
 
+    triggers {
+        pollSCM '* * * * *' 
+    }
+
     stages{
         stage("Check Node"){
             steps{
